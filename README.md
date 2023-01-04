@@ -1,4 +1,4 @@
-# League of Legends: Player patterns in champion and role mains
+#Player patterns in champion and role mains in League of Legends
 
 League offers a lot of choice in terms of playstyle and decisions. People seem to naturally "fall into" liking certain roles and champions. I was curious if we can see some of these preferences in playstyle in a data-driven way. Do players prefer playing certain kinds of champions? Are there patterns in what kinds of champions or roles players main? For example, I have always played squishy, pokey, mage champions, and dislike playing all-in assassins. This could also be the start of a champion recommender, or be used to generate additional insights into certain player preferences.
 
