@@ -9,7 +9,7 @@ League offers a lot of choice in terms of playstyle and decisions. People seem t
 
 Sample visualizations the insights I found from these analyses:
 
-If you main X champion... you are likely to main Y and least likely to main Z
+If you main X champion... you are likely to main Y and least likely to main Z. Example visualization with 8 different champions. Teemo I find particularly fun.
 ![sample visualization](graphics/mains.png)
 
 Network graph generated based on mastery data from 14343 random summoners (from Iron to Diamond). Connections indicate a strong relationship between how often those champions are mained. Clustering using FR means that the distance between bubbles also reflects. You can see natural communities starting to form reflecting support champions. You can also see some neat connections, such as the "pull" champions from Pyke to Thresh to Blitz. With Pyke having more direct connections with the assassin-y cluster.
