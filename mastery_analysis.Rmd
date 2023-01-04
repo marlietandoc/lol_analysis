@@ -234,7 +234,7 @@ least_related <- tail(how_related, 5) %>%
   arrange(value)
 
 
-knitr::include_graphics(paste0(getwd(), "/graphics/if you main.png"))
+knitr::include_graphics(paste0(getwd(), "/graphics/mains.png"))
 
 
 
