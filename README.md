@@ -12,7 +12,7 @@ Sample visualizations the insights I found from these analyses:
 If you main X champion... you are likely to main Y and least likely to main Z
 ![sample visualization](graphics/mains.png)
 
-How often champions are mained together as a network with clustering
+Network graph generated based on mastery data from 14343 random summoners (from Iron to Diamond). Connections indicate a strong relationship between how often those champions are mained. Clustering using FR means that the distance between bubbles also reflects. You can see natural communities starting to form reflecting support champions. You can also see some neat connections, such as the "pull" champions from Pyke to Thresh to Blitz. With Pyke having more direct connections with the assassin-y cluster.
 ![sample visualization](graphics/network.png)
 
 Curated data from Riot API can be found in the folders: mastery_data and match_data
