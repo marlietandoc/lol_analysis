@@ -25,9 +25,11 @@ First lets just eyeball every single champions relationship to all other champio
 ```{r wrangling, echo = FALSE,fig.height = 30, fig.width = 30, message = FALSE, warning = FALSE}
 
 #Read in mastery data pulled from Riot API
-setwd("~/Documents/GitHub/lol/lol_analysis")
+setwd("~/Documents/GitHub/lol/lol_analysis/mastery_data")
+mastery_files <- list.files(recursive=TRUE, pattern = "*mastery")
+mastery  <- do.call(rbind.fill,lapply(mastery_files,read.csv))
 
-mastery <- read.csv('all_mastery.csv')
+#mastery <- read.csv('all_mastery.csv')
 
 #Number of unique summoners
 #length(unique(mastery$summonerId))
@@ -43,17 +45,17 @@ mains <- mastery %>%
 #Turn into one hot vector/dummy coding to compute correlation matrix
 mains_melted <- dcast(melt(mains,id.var="summonerId"), summonerId ~ value, length) %>% select(-summonerId)
 
-
 #Compute correlation matrix
 cor <- cor(mains_melted)
 #Melt mains into a one-hot vector matrix/dummy coding
 melted_cormat <- melt(cor)
 filtered_melted_cormat <- melted_cormat %>%
   drop_na()
- 
+
+#Order based on a hiearchical clustering algorithm based on the dissimilarities from the correlation matrix
 clust <- hclust(dist(t(cor)))
 
-#Clustered!!
+#Graph
 ggplot(data = filtered_melted_cormat, aes(x=as.character(Var1),  y= as.character(Var2), fill=value)) + 
   geom_tile()+
   scale_fill_gradient2(low = "red", high = "blue", mid = "white", 
@@ -214,8 +216,18 @@ knitr::include_graphics(paste0(getwd(), "/graphics/least_related.png"))
 
 
 ## If you play X..
-I also wrote a function that based on the mastery data determines the top 3 champs you are most likely to play and least likely to play. With some manual placement in photoshop I made a graphic of some champions and their most likely and least likely mains
+I also wrote a function that based on the mastery data determines the top 3 champs you are most likely to play and least likely to play. Using the results from this,  With some manual placement in photoshop I made a graphic of some champions and their most likely and least likely mains
 ```{r func_play, echo=FALSE, fig.height=30, fig.width=30, message=FALSE, warning=FALSE}
+
+
+calc_if_you_play <- function(champ_name) {
+  
+  sorted <- filter(filtered_melted_cormat, Var1 == champ_name) %>%
+    arrange(desc(value))
+  
+  
+  
+}
 
 #Least related
 least_related <- tail(how_related, 5) %>%
