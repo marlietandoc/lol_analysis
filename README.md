@@ -5,13 +5,15 @@ Do players prefer playing certain kinds of champions? Are there patterns in what
 <strong> What I did </strong>
 1. Pulled match-level and amstery data from Riot's APIS for thousands of summoners and their most recent matches (scripts to fetch API data found in the API_fetch folder)
 2. Analyzed data in R using some descriptive statistics, multivariate correlation metrics, clustering, and network analysis
-3. Visualized
+3. Visualized insights with R (ggplot, igraph, packages) using champion icons and some manual placement in illustrator/photoshop.
 
 Sample visualizations the insights I found from these analyses:
 
-![sample visualization](graphics/network.png)
+If you main X champion... you are likely to main Y and least likely to main Z
+![sample visualization](graphics/mains.png)
 
-![sample visualization](graphics/if you play.png)
+How often champions are mained together as a network with clustering
+![sample visualization](graphics/network.png)
 
 
 Curated data from Riot API can be found in the folders: mastery_data and match_data
