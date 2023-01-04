@@ -1,6 +1,6 @@
-# League of Legends: Player patterns in champion and role mains
+# League of Legends: Patterns across players in champion mains
 
-League offers a lot of choice in terms of playstyle and decisions. People seem to naturally "fall into" liking certain roles and champions. I was curious if we can see some of these preferences in playstyle in a data-driven way. Do players prefer playing certain kinds of champions? Are there patterns in what kinds of champions or roles players main? For example, I have always played squishy, pokey, mage champions, and dislike playing all-in assassins. This could also be the start of a champion recommender, or be used to generate additional insights into certain player preferences.
+League offers a lot of choice in terms of playstyle. Players seem to naturally "fall into" liking certain roles and champions. I was curious if we can extract some of these preferences in a data-driven way (by looking at mastery and match data). Do players prefer playing certain kinds of champions? Are there patterns in what kinds of champs players tend to  main? For example, I have always played squishy, pokey, mage champions, and dislike playing all-in assassins or tanks. This could also be the start of a champion recommender, or be used to generate additional insights into certain player preferences.
 
 <strong> What I did </strong>
 1. Pulled match-level and amstery data from Riot's APIS for thousands of summoners and their most recent matches (scripts to fetch API data found in the API_fetch folder)
@@ -9,10 +9,10 @@ League offers a lot of choice in terms of playstyle and decisions. People seem t
 
 Sample visualizations the insights I found from these analyses:
 
-If you main X champion... you are likely to main Y and least likely to main Z
+If you main X ... you are mostlikely to main Y and least likely to main Z. Example visualization with 8 different champions.
 ![sample visualization](graphics/mains.png)
 
-Network graph generated based on mastery data from 14343 random summoners (from Iron to Diamond). Connections indicate a strong relationship between how often those champions are mained. Clustering using FR means that the distance between bubbles also reflects. You can see natural communities starting to form reflecting support champions. You can also see some neat connections, such as the "pull" champions from Pyke to Thresh to Blitz. With Pyke having more direct connections with the assassin-y cluster.
+Network graph generated based on mastery data from 14343 random summoners. Connections indicate a strong relationship between how often those champions are mained together by players. You can see natural communities starting to form reflecting champions with different playstyles and lanes. You can also see some neat connections between these communities, such as the "pull" champions Thresh/Blitz/Pyke. With Pyke having more direct connections with the assassin-y cluster.
 ![sample visualization](graphics/network.png)
 
 Curated data from Riot API can be found in the folders: mastery_data and match_data
