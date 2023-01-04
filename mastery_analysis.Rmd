@@ -1,0 +1,233 @@
+---
+title: "Patterns across players in champions"
+output: html_document
+
+---
+
+```{r setup, include=FALSE}
+library(plyr) #tidyverse
+library(dplyr)#tidyverse
+library(tidyverse)#tidyverse
+library(ggplot2) #plotting
+library(ggdark) #plotting
+library(reshape2) #for melting into matrix
+library(jsonlite) #json file reading
+library(igraph)
+library(png)
+library(magick)
+
+```
+
+## The data
+Mastery data from 14343 different summoners from Iron to Diamond. The data is ordered already in descending order based on mastery points. For each summoner,  I took their top 3 champions (most mastery points) as their three mains. I then looked at how often certain champions co-occured (were correlated) in mains across players. That is, if a player mains Zed, do they also main Yasuo? How about Lux?
+
+First lets just eyeball every single champions relationship to all other champions. This checkerboard is showing every pairwise relationship between all summoners. So a blue square means those two champions (line up the champ name on the vertical and horizontal axis) are often mainted together. A red squares means those two champions are rarely mains together. I also ordered it in a hiearchical clustering fashion which creates these clusters of champions based. For example in the bottom left you can see an assasssin cluster that formed where if you play one assassin you are likely to play another!
+```{r wrangling, echo = FALSE,fig.height = 30, fig.width = 30, message = FALSE, warning = FALSE}
+
+#Read in mastery data pulled from Riot API
+setwd("~/Documents/GitHub/lol/lol_analysis")
+
+mastery <- read.csv('all_mastery.csv')
+
+#Number of unique summoners
+#length(unique(mastery$summonerId))
+
+## For each summoner find their top 3 mains (based on mastery points)
+mains <- mastery %>%
+  group_by(summonerId) %>%
+  summarize(main_1 = name[1],
+            main_2 = name[2],
+            main_3 = name[3]) %>%
+  drop_na()
+
+#Turn into one hot vector/dummy coding to compute correlation matrix
+mains_melted <- dcast(melt(mains,id.var="summonerId"), summonerId ~ value, length) %>% select(-summonerId)
+
+
+#Compute correlation matrix
+cor <- cor(mains_melted)
+#Melt mains into a one-hot vector matrix/dummy coding
+melted_cormat <- melt(cor)
+filtered_melted_cormat <- melted_cormat %>%
+  drop_na()
+ 
+clust <- hclust(dist(t(cor)))
+
+#Clustered!!
+ggplot(data = filtered_melted_cormat, aes(x=as.character(Var1),  y= as.character(Var2), fill=value)) + 
+  geom_tile()+
+  scale_fill_gradient2(low = "red", high = "blue", mid = "white", 
+                       midpoint = 0, limit = c(-0.1,0.2), space = "Lab", 
+                       name="Correlation") + 
+  dark_theme_gray(base_size = 20,base_family = 'Helvetica') + 
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))+
+  scale_y_discrete(limits = colnames(cor)[clust$order])+
+  scale_x_discrete(limits = colnames(cor)[clust$order]) +
+  labs(y = '', x = '') +
+  ggtitle('What mains are tightly correlated?')
+
+
+#List of champions that are most related
+how_related <- filtered_melted_cormat %>%
+  filter(value < 1) %>%
+  arrange(desc(value))
+how_related <- how_related[!duplicated(how_related$value),]
+
+#Most related (value = if you main this champion, how correlated they are across players, 1 = if champions main this champ 100% of the  time they main this other champ, -1 = if champions main this champ 0% of the time they main this other champ)
+most_related <- head(how_related, 20)
+#Least related
+least_related <- tail(how_related, 20) %>%
+  arrange(value)
+
+
+
+
+
+#What champions have highest mastery (yasuo seems like)
+most_mastered <- mastery %>%
+  group_by(name) %>%
+  summarize(mean_points = mean(championPoints)) %>%
+  arrange(desc(mean_points))
+
+```
+
+
+
+## Most mastered
+Champions with the most mastery points (most popular)
+```{r most_mastered, echo = FALSE,fig.height = 30, fig.width = 30, message = FALSE, warning = FALSE}
+
+#What champions have highest mastery (yasuo seems like)
+most_mastered <- mastery %>%
+  group_by(name) %>%
+  summarize(mean_points = mean(championPoints)) %>%
+  arrange(desc(mean_points))
+
+head(most_mastered)
+
+```
+
+
+
+
+## Most related
+These are the champion pairs that are the most correlated with one another (i.e. if you main Zed you are likely to also main Yasuo). A higher positive value means those summoners are mained more often together
+```{r most_related, echo = FALSE,fig.height = 30, fig.width = 30, message = FALSE, warning = FALSE}
+
+#List of champions that are most related
+how_related <- filtered_melted_cormat %>%
+  filter(value < 1) %>%
+  arrange(desc(value))
+how_related <- how_related[!duplicated(how_related$value),]
+
+#Most related (value = if you main this champion, how correlated they are across players, 1 = if champions main this champ 100% of the  time they main this other champ, -1 = if champions main this champ 0% of the time they main this other champ)
+most_related <- head(how_related, 5)
+
+most_related
+# # 
+# # #Read in images
+#  setwd("/Users/tandoc/Documents/GitHub/lol/lol_analysis/champs_squares")
+# # 
+# # #Loop through most related list and create side by side images of champion icons
+# for (i in 1:nrow(most_related)) {
+# 
+#   c1 <- image_read(paste(most_related$Var1[i],'Square.png', sep = ''))
+#    c2 <- image_read(paste(most_related$Var2[i],'Square.png', sep = ''))
+# 
+# 
+#   if (i ==1 ) {
+#   #Initialize final image
+#   final_image <- image_border(image_append(c(c1,c2)),color = 'lightblue')
+# 
+#   } else {
+# 
+#    pair <-image_border(image_append(c(c1,c2)),color = 'lightblue')
+# 
+#    #Append to final image
+#    final_image <- c(final_image, pair)
+# 
+#   }
+# 
+# }
+# 
+#    last_image <- image_append(final_image, stack = TRUE)
+#   
+#   #Save to results directory as workaround for embedding issue with magick package
+#   setwd("/Users/tandoc/Documents/GitHub/lol/lol_analysis/graphics")
+#   image_write(last_image, path = paste('most_related', '.png', sep = ''), format = "png")
+  
+ # knitr::include_graphics(path.expand("most_related.png"))
+  knitr::include_graphics(paste0(getwd(), "/graphics/most_related.png"))
+  
+  
+```
+
+
+
+
+## Least related
+These are the top champion pairs that are the least related. That is if you main Lux you are least likely to also main Lux. That is Yasuo mains seem to have very strong preferences of what other champs they tend to play
+```{r least_related, echo=FALSE, fig.height=30, fig.width=30, message=FALSE, warning=FALSE}
+
+#Least related
+least_related <- tail(how_related, 5) %>%
+  arrange(value)
+
+least_related
+
+# #Read in images
+# setwd("/Users/tandoc/Documents/GitHub/lol/lol_analysis/champs_squares")
+# 
+# #Loop through least related list and create side by side images of champion icons
+# for (i in 1:nrow(least_related)) {
+# 
+#   c1 <- image_read(paste(least_related$Var1[i],'Square.png', sep = ''))
+#    c2 <- image_read(paste(least_related$Var2[i],'Square.png', sep = ''))
+# 
+# 
+#   if (i ==1 ) {
+#   #Initialize final image
+#   final_image <- image_border(image_append(c(c1,c2)),color = '#f7bfbc')
+# 
+#   } else {
+# 
+#    pair <-image_border(image_append(c(c1,c2)),color = '#f7bfbc')
+# 
+#    #Append to final image
+#    final_image <- c(final_image, pair)
+# 
+#   }
+# 
+# }
+# 
+#     last_image <- image_append(final_image, stack = TRUE)
+#   
+#   #Save to results directory as workaround for embedding issue with magick package
+#   setwd("/Users/tandoc/Documents/GitHub/lol/lol_analysis/graphics")
+#   image_write(last_image, path = paste('least_related', '.png', sep = ''), format = "png")
+
+knitr::include_graphics(paste0(getwd(), "/graphics/least_related.png"))
+  
+
+
+```
+
+
+## If you play X..
+I also wrote a function that based on the mastery data determines the top 3 champs you are most likely to play and least likely to play. With some manual placement in photoshop I made a graphic of some champions and their most likely and least likely mains
+```{r func_play, echo=FALSE, fig.height=30, fig.width=30, message=FALSE, warning=FALSE}
+
+#Least related
+least_related <- tail(how_related, 5) %>%
+  arrange(value)
+
+
+knitr::include_graphics(paste0(getwd(), "/graphics/if you main.png"))
+
+
+
+
+```
+
+
+
