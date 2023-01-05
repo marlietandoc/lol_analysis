@@ -1,6 +1,9 @@
 # League of Legends: Exploring patterns across players in champion preferences
 
+![sample visualization](graphics/summary.png)
+
 [League](https://www.leagueoflegends.com/) offers a lot of choice in terms of playstyle, which is one reason why the game is so much fun. I have also always found it interesting how players seem to naturally "fall into" liking certain roles and champions. I was curious if I could extract some of these preferences in a data-driven way. Do players prefer certain kinds of champions? Are there patterns in the types of champions that players main? For example, if you play Lux are you also likely to play Morgana? 
+
 
 ## What I did
 1. Pulled match and champion mastery data from Riot API (https://developer.riotgames.com/) for thousands of summoners
