@@ -1,7 +1,6 @@
 # League of Legends: Exploring patterns across players in champion preferences
 
-League offers a lot of choice in terms of playstyle, which is one reason why the game is so much fun. I have also always found it interesting how players seem to naturally "fall into" liking certain roles and champions. I was curious if I could extract some of these preferences in a data-driven way. Do players prefer certain kinds of champions? Are there patterns in what kinds of champs players tend to main? For example, if you play Lux are you likely to play Morgana? 
-
+[League](https://www.leagueoflegends.com/) offers a lot of choice in terms of playstyle, which is one reason why the game is so much fun. I have also always found it interesting how players seem to naturally "fall into" liking certain roles and champions. I was curious if I could extract some of these preferences in a data-driven way. Do players prefer certain kinds of champions? Are there patterns in the types of champions that players main? For example, if you play Lux are you also likely to play Morgana? 
 
 ## What I did
 1. Pulled match and champion mastery data from Riot API (https://developer.riotgames.com/) for thousands of summoners
@@ -12,8 +11,8 @@ League offers a lot of choice in terms of playstyle, which is one reason why the
 For 14343 summoners, I selected each summoner's 3 most mastered champions as mains. I then examined how correlated or uncorrelated champions were as mains. The blue column shows the 3 champions with the strongest correlation (most often mained with the champion on the far left). The red column shows the champion with the weakest correlation (least ofted mained with the champion on the left). I chose 8 champs to visualize these insights. Not all champions had super strong correlations with other champions. So I also visualized (left) the champion pairs that had the strongest and weakest correlation with other champions as mains. For example, being a Yuumi main is tightly linked to also being a Lulu main.
 ![sample visualization](graphics/side_by_side.png) 
 
-## Network generated from mastery data of 14343 summoners
-Another way to visualize this data is as a network. Connections indicate a strong relationship in how often champions are mained together across players. Because the network is force-directed, these connections, but also distance, indicate how likely those champions are to be mained together. You can see communities that naturally emerge that seem to reflect champion playstyles (assassins cluster, support cluster, etc.). You can also see some neat connections between these communities, such as the "pull" champions Thresh/Blitz/Pyke. With Pyke having more direct connections with the assassin cluster.
+## Visualizing champion mains as a network
+Another way to visualize this data is as a network. I visualized only champions that had strong connections with other champions (were often mained together). Connections (white lines) indicate a strong relationship in how often champions are mained together across players. Because the network is force-directed, these connections, but also distance, indicate how likely those champions are to be mained together. You can see communities that naturally emerge that seem to reflect champion playstyles (assassins cluster, support cluster, etc.). You can also see some neat connections between these communities, such as the "pull" champions Thresh/Blitz/Pyke. With Pyke having more direct connections with the assassin cluster.
 ![sample visualization](graphics/network.png)
 
 ## How many different champions do summoners play?
@@ -30,6 +29,3 @@ The number of different champions summoners play in their most recent ranked gam
 - Due to rate limiting I didn't get as much data as I would have liked from the API. I'm hoping to pull more over time. For example, it would be super cool to track player data across an entire ranked season.
 - This data also could be the start of a champion recommender, or be combined with other data to be used to generate additional insights into player preference and behavior. I am especially interested in seeing if we can use techniques to place players into groups (clustering, factor analysis, etc) to see if this predicts what champions they play but also other aspects of gameplay.
 - With the ever-changing meta, some champs are much more popular than others. It might be worth taking this into account into some of the analyses.
-
-## Other
-Game data and icons are property of Riot Games.
