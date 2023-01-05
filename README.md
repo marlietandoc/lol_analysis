@@ -5,10 +5,10 @@
 ## What I did
 1. Pulled match and champion mastery data from Riot API (https://developer.riotgames.com/) for thousands of summoners
 2. Analyzed data in R using descriptive statistics, multivariate correlation metrics, clustering, and network analysis
-3. Visualized insights with R (ggplot2, igraph, magick) using champion icons and a bit of manual placement in illustrator/photoshop.
+3. Visualized insights with R (ggplot2, igraph, magick) using champion icons and a bit of manual placement in illustrator/photoshop
 
 ## Preferences in champion mains
-For 14343 summoners, I selected each summoner's 3 most mastered champions as mains. I then examined how correlated or uncorrelated champions were as mains. The blue column shows the 3 champions with the strongest correlation (most often mained with the champion on the far left). The red column shows the champion with the weakest correlation (least ofted mained with the champion on the left). I chose 8 champs to visualize these insights. Not all champions had super strong correlations with other champions. So I also visualized (left) the champion pairs that had the strongest and weakest correlation with other champions as mains. For example, being a Yuumi main is tightly linked to also being a Lulu main.
+I selected the top 3 most mastered champions (mains) for each of the 14343 summoners in the dataset. I then examined how often certain champions co-occured (were correlated) as mains across players. That is, for each champion I got a number for how often that champion was mained with all other champions. I chose 8 champs to visualize some of these insights (left). Not all champions had super strong correlations with other champions. So I also visualized (right) the champion pairs that had the strongest and weakest correlations (co-occured most frequently as mains). For example, being a Yuumi main is tightly linked to also being a Lulu main. But if you're a Yasuo main, you are unlikely to be a Lux main.
 ![sample visualization](graphics/side_by_side.png) 
 
 ## Visualizing champion mains as a network
