@@ -16,9 +16,9 @@ Connections indicate a strong relationship in how often those champions are main
 ![sample visualization](graphics/network.png)
 
 
-## The number of different champions summoners play in their most recent ranked games.
-There is a pretty wide range in how big player's champ pools are, though most summoners play around 5-10 unique champions (at least in their most recent ranked games).
-![sample visualization](graphics/unique.png)
+## How many different champions do summoners play?
+The number of different champions summoners play in their most recent ranked games. There is a pretty wide range in how big player's champ pools are, though most summoners play around 5-10 unique champions (at least in their most recent ranked games).
+![sample visualization](graphics/histogram.png)
 
 ## Where to find stuff
 - Curated data from Riot API can be found in the folders: mastery_data and match_data
