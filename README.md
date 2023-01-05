@@ -7,13 +7,14 @@ League offers a lot of choice in terms of playstyle, which is one reason why the
 2. Analyzed data in R using some descriptive statistics, multivariate correlation metrics, clustering, and network analysis
 3. Visualized insights with R (ggplot, igraph, packages) using champion icons and some manual placement in illustrator/photoshop.
 
-## Visualization generaetd from mastery data of 14343 summoners
+## Visualization generated from mastery data of 14343 summoners
+For each champion, I examined how correlated or uncorrelated champions were across summoners in their top 3 mastered champs.
 ![sample visualization](graphics/mains.png) 
 
 ## Network generated from mastery data of 14343 summoners
 Connections indicate a strong relationship in how often those champions are mained together across players.
 ![sample visualization](graphics/network.png)
-You can see natural communities starting to form reflecting champions with different playstyles and lanes. You can also see some neat connections between these communities, such as the "pull" champions Thresh/Blitz/Pyke. With Pyke having more direct connections with the assassin-y cluster.
+You can see communities that emerge which seem to reflecting players who prefer champions with different playstyles and lanes (assassins, adcs from more pokey to more all-in). You can also see some neat connections between these communities, such as the "pull" champions Thresh/Blitz/Pyke. With Pyke having more direct connections with the assassin-y cluster.
 
 ## The number of different champions summoners play in their most recent ranked games.
 Most summoners play around 5-10 unique champions. 
