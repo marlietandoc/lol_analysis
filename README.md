@@ -8,7 +8,7 @@ League offers a lot of choice in terms of playstyle, which is one reason why the
 3. Visualized insights with R (ggplot2, igraph, magick) using champion icons and a bit of manual placement in illustrator/photoshop.
 
 ## If you main X...
-For 14343 summoners, I selected each summoner's 3 most mastered champions as mains. I then examined how correlated or uncorrelated champions were as mains. I chose 8 champs to visualize these insights:
+For 14343 summoners, I selected each summoner's 3 most mastered champions as mains. I then examined how correlated or uncorrelated champions were as mains. The blue column shows the 3 champions with the strongest correlation (most often mained with the champion on the far  left). The red column shows the champion with the weakest correlation (least ofted mained with the champion on the left). I chose 8 champs to visualize these insights:
 ![sample visualization](graphics/mains.png) 
 
 ## Network generated from mastery data of 14343 summoners
