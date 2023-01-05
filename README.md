@@ -2,6 +2,7 @@
 
 League offers a lot of choice in terms of playstyle, which is one reason why the game is so much fun. I have also always found it interesting how players seem to naturally "fall into" liking certain roles and champions. I was curious if I could extract some of these preferences in a data-driven way. Do players prefer certain kinds of champions? Are there patterns in what kinds of champs players tend to main? For example, if you play Lux are you likely to play Morgana? 
 
+
 ## What I did
 1. Pulled match and champion mastery data from Riot API (https://developer.riotgames.com/) for thousands of summoners
 2. Analyzed data in R using descriptive statistics, multivariate correlation metrics, clustering, and network analysis
@@ -29,3 +30,6 @@ The number of different champions summoners play in their most recent ranked gam
 - Due to rate limiting I didn't get as much data as I would have liked from the API. I'm hoping to pull more over time. For example, it would be super cool to track player data across an entire ranked season.
 - This data also could be the start of a champion recommender, or be combined with other data to be used to generate additional insights into player preference and behavior. I am especially interested in seeing if we can use techniques to place players into groups (clustering, factor analysis, etc) to see if this predicts what champions they play but also other aspects of gameplay.
 - With the ever-changing meta, some champs are much more popular than others. It might be worth taking this into account into some of the analyses.
+
+## Other
+Game data and icons are property of Riot Games.
