@@ -15,10 +15,14 @@ For each champion, I examined how correlated or uncorrelated champions were acro
 Connections indicate a strong relationship in how often those champions are mained together across players. You can see communities that emerge which seem to reflecting players who prefer champions with different playstyles and lanes (assassins, adcs from more pokey to more all-in). You can also see some neat connections between these communities, such as the "pull" champions Thresh/Blitz/Pyke. With Pyke having more direct connections with the assassin-y cluster.
 ![sample visualization](graphics/network.png)
 
+## Champion mains with the strongest preferences
+These are the champion pairs that had the strongest and weakest correlation with other champions as mains.
+![sample visualization](graphics/most_least.png)
 
 ## How many different champions do summoners play?
 The number of different champions summoners play in their most recent ranked games. There is a pretty wide range in how big player's champ pools are, though most summoners play around 5-10 unique champions (at least in their most recent ranked games).
 ![sample visualization](graphics/histogram.png)
+
 
 ## Where to find stuff
 - Curated data from Riot API can be found in the folders: mastery_data and match_data
