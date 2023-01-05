@@ -3,9 +3,9 @@
 League offers a lot of choice in terms of playstyle, which is one reason why the game is so fun. Players seem to naturally "fall into" liking certain roles and champions. I was curious if we can extract some of these preferences in a data-driven way (by looking at what champions summoner's play and master). Do players prefer certain kinds of champions? Are there patterns in what kinds of champs players tend to main? For example, I have always played squishy, pokey, mage champions, and dislike playing all-in assassins or tanks. I did some exploratory data analysis and visualized some of the insights. This could also be the start of a champion recommender, or be combined with other data to be used to generate additional insights into player preference and behavior.
 
 <strong> What I did </strong>
-1. Pulled match-level and mastery data from Riot's APIS for thousands of summoners and their most recent matches (scripts to fetch API data found in the API_fetch folder)
-2. Analyzed data in R using some descriptive statistics, multivariate correlation metrics, clustering, and network analysis
-3. Visualized insights with R (ggplot, igraph, packages) using champion icons and some manual placement in illustrator/photoshop.
+1. Pulled match-level and mastery data from Riot's APIS for thousands of summoners and their most recent matches 
+2. Analyzed data in R using descriptive statistics, multivariate correlation metrics, clustering, and network analysis
+3. Visualized insights with R (ggplot2, igraph, magick) using champion icons and a bit of manual placement in illustrator/photoshop.
 
 ## Visualization generated from mastery data of 14343 summoners
 For each champion, I examined how correlated or uncorrelated champions were across summoners in their top 3 mastered champs.
