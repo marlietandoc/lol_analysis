@@ -126,7 +126,7 @@ grp.median = median(unique_champions$unique_champs_played)
 
 ggplot(unique_champions, aes(x=unique_champs_played))+  
   geom_histogram(aes(y = (..count..)/sum(..count..)), binwidth = 1, color = 'darkblue', fill = 'lightblue')+ 
-  dark_theme_gray(base_size = 20,base_family = 'Helvetica') +
+  dark_theme_gray(base_size = 20, base_family = 'Helvetica') +
   #stat_bin(aes(y=(..count..)/sum(..count..)*100, 
      #        $ label=paste0(round((..count..)/sum(..count..)*100,1),"%")),color = 'darkblue', fill = $'lightblue', bins = 30) +
   geom_vline(data=unique_champions, aes(xintercept=grp.mean),
@@ -138,7 +138,7 @@ ggplot(unique_champions, aes(x=unique_champs_played))+
   geom_text(aes(x=29, label="Different every game", y=0.072), colour="#d5f5b8", angle=90, size = 6) + 
   geom_text(aes(x=-1, label="Same every game", y=0.07), colour="#d5f5b8", angle=90, size = 6) +
   #coord_cartesian(ylim = c(0,0.12)) +
-  ggtitle('How many different champions do summoners play?') +
+  ggtitle('How many champions do summoners play?') +
   theme(plot.background = element_rect(fill = "grey10"),
                 panel.background = element_blank(),
                 panel.grid.major = element_line(color = "grey30", size = 0.1),
@@ -147,7 +147,7 @@ ggplot(unique_champions, aes(x=unique_champs_played))+
                 axis.ticks = element_blank(),
         legend.position = 'none')  +
   scale_x_continuous(breaks = seq(0, 30, by = 5))+
-  labs(y = 'Proportion of players', x = "Number of unique champions played in last 30 ranked games")
+  labs(y = 'Proportion of players', x = "Unique champions played in last 30 ranked games")
 
 #Narrow champ pool (Exploit, Mastery) ---> Wider champ pool (Explore, Flexibility)
 

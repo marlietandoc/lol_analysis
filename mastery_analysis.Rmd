@@ -12,9 +12,9 @@ library(ggplot2) #plotting
 library(ggdark) #plotting
 library(reshape2) #for melting into matrix
 library(jsonlite) #json file reading
-library(igraph)
-library(png)
-library(magick)
+library(igraph) #for network graph
+library(png) #image reading
+library(magick) #image manipulation
 
 ```
 
@@ -68,28 +68,6 @@ ggplot(data = filtered_melted_cormat, aes(x=as.character(Var1),  y= as.character
   labs(y = '', x = '') +
   ggtitle('What mains are tightly correlated?')
 
-
-#List of champions that are most related
-how_related <- filtered_melted_cormat %>%
-  filter(value < 1) %>%
-  arrange(desc(value))
-how_related <- how_related[!duplicated(how_related$value),]
-
-#Most related (value = if you main this champion, how correlated they are across players, 1 = if champions main this champ 100% of the  time they main this other champ, -1 = if champions main this champ 0% of the time they main this other champ)
-most_related <- head(how_related, 20)
-#Least related
-least_related <- tail(how_related, 20) %>%
-  arrange(value)
-
-
-
-
-
-#What champions have highest mastery (yasuo seems like)
-most_mastered <- mastery %>%
-  group_by(name) %>%
-  summarize(mean_points = mean(championPoints)) %>%
-  arrange(desc(mean_points))
 
 ```
 
