@@ -1,9 +1,9 @@
-# League of Legends: Patterns across players in champion mains
+# League of Legends: Patterns across players in what champions they play
 
-League offers a lot of choice in terms of playstyle, which is one reason why the game is so fun. Players seem to naturally "fall into" liking certain roles and champions. I was curious if we can extract some of these preferences in a data-driven way (by looking at what champions summoner's play and master). Do players prefer certain kinds of champions? Are there patterns in what kinds of champs players tend to main? For example, I have always played squishy, pokey, mage champions, and dislike playing all-in assassins or tanks. I did some exploratory data analysis and visualized some of the insights. This could also be the start of a champion recommender, or be combined with other data to be used to generate additional insights into player preference and behavior.
+League offers a lot of choice in terms of playstyle, which is one reason why the game is so much fun. I have also always found it interesting how players seem to naturally "fall into" liking certain roles and champions. I was curious if I could extract some of these preferences in a data-driven way (by looking at what champions summoners play and master). Do players prefer certain kinds of champions? Are there patterns in what kinds of champs players tend to main? For example, if you play Lux what other champs are you likely to play (or unlikely to play). This could also be the start of a champion recommender, or be combined with other data to be used to generate additional insights into player preference and behavior.
 
 <strong> What I did </strong>
-1. Pulled match-level and mastery data from Riot's APIS for thousands of summoners and their most recent matches 
+1. Pulled match and mastery data from Riot API for thousands of summoners
 2. Analyzed data in R using descriptive statistics, multivariate correlation metrics, clustering, and network analysis
 3. Visualized insights with R (ggplot2, igraph, magick) using champion icons and a bit of manual placement in illustrator/photoshop.
 
