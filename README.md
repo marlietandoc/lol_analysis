@@ -7,17 +7,13 @@ League offers a lot of choice in terms of playstyle, which is one reason why the
 2. Analyzed data in R using descriptive statistics, multivariate correlation metrics, clustering, and network analysis
 3. Visualized insights with R (ggplot2, igraph, magick) using champion icons and a bit of manual placement in illustrator/photoshop.
 
-## If you main X...
-For 14343 summoners, I selected each summoner's 3 most mastered champions as mains. I then examined how correlated or uncorrelated champions were as mains. The blue column shows the 3 champions with the strongest correlation (most often mained with the champion on the far  left). The red column shows the champion with the weakest correlation (least ofted mained with the champion on the left). I chose 8 champs to visualize these insights:
-![sample visualization](graphics/mains.png) 
+## Preferences in champion mains
+For 14343 summoners, I selected each summoner's 3 most mastered champions as mains. I then examined how correlated or uncorrelated champions were as mains. The blue column shows the 3 champions with the strongest correlation (most often mained with the champion on the far left). The red column shows the champion with the weakest correlation (least ofted mained with the champion on the left). I chose 8 champs to visualize these insights. Not all champions had super strong correlations with other champions. So I also visualized (left) the champion pairs that had the strongest and weakest correlation with other champions as mains. For example, being a Yuumi main is tightly linked to also being a Lulu main.
+![sample visualization](graphics/side_by_side.png) 
 
 ## Network generated from mastery data of 14343 summoners
 Another way to visualize this data is as a network. Connections indicate a strong relationship in how often champions are mained together across players. Because the network is force-directed, these connections, but also distance, indicate how likely those champions are to be mained together. You can see communities that naturally emerge that seem to reflect champion playstyles (assassins cluster, support cluster, etc.). You can also see some neat connections between these communities, such as the "pull" champions Thresh/Blitz/Pyke. With Pyke having more direct connections with the assassin cluster.
 ![sample visualization](graphics/network.png)
-
-## Champion mains with the strongest preferences
-Not all champions had super strong correlations with other champions. Here I visualized the champion pairs that had the strongest and weakest correlation with other champions as mains. For example, being a Yuumi main is tightly linked to also being a Lulu main.
-![sample visualization](graphics/most_least.png)
 
 ## How many different champions do summoners play?
 The number of different champions summoners play in their most recent ranked games. There is a pretty wide range in how big player's champ pools are, though most summoners play around 5-10 unique champions (at least in their most recent ranked games).
