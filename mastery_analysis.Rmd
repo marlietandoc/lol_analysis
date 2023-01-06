@@ -19,7 +19,7 @@ library(magick) #image manipulation
 ```
 
 ## The data
-Mastery data from 14343 different summoners from Iron to Diamond. For each summoner,  I took their top 3 champions (three champions with the most mastery points) as their three mains. I then looked at how often certain champions co-occured (were correlated) in mains across players.
+Mastery data from 14343 different summoners ranging from Iron to Diamond. For each summoner,  I took their top 3 champions (three champions with the most mastery points) as their three mains. I then looked at how often certain champions co-occured (were correlated) in mains across players.
 
 ## The big picture
 I first wanted to eyeball every champions relationship to all other champions as a giant correlation matrix (heatmap) just to see if there is any meaningful relationships at all in what champions are often mained by the same players. This checkerboard visual is showing every pairwise relationship between all champions. A blue square means those two champions (line up the champ name on the vertical and horizontal axis) are often mained together. A red squares means those two champions are rarely mained together. I ordered the champions using hierarchical clustering which creates these "groups" of champions based on their similarity (how often they are mained together across players) to other champions which creates several large blue clusters. For example, in the very bottom left you can see an assassin cluster emerging where if you play one assassin you are likely to play another. I know it's hard to see so let's zoom in a bit. 

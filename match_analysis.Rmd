@@ -15,29 +15,8 @@ library(reshape2) #for melting into matrix
 ```
 
 ## The data
+Match data from 1063 different summoners ranging from Iron to Diamond. For each summoner, I have information about their 30 most recent matches.
 
-First I read in match-level data which I had saved as separate 5 separate .csvs. 
-
-I curated this data by requesting data from Riot's public API (https://developer.riotgames.com/) using R (see file in repo fetch_matches_riot_api.R). The logic was as follows:
-
-1) Request summoner IDs of 1800 summoners (Samples 300 in each rank from Iron to Diamond, 75 per division)
-
-2) Using summoner IDs, I then requested puuids (another form of account ID which is needed to pull match data )
-
-3) Use puuids to request a list of the last 30 ranked matches for each summoner as match IDs
-
-4) Using match IDs I accessed the match-level data of for all these matches
-
-Together this gives me information about ~1800 summoners most recent 30 ranked games which could let track player patterns such as the following:
-
-Some examples of questions you could answer with this dataset
-What roles does a player usually play?
-If a players plays one lane, what other lanes do they tend to play?
-How many champions do summoners tend to play (in their last 30 games)? Are most players one-trick ponies or do they have a wide champion pool? Does this differ by lane?
-How many roles do summoners tend to play?
-After a win, do summoners play the same champion again?
-
-Ideally it would be great to track a player's match data across an entire season. Unfortunately this would take a long time due to limited number of requests I am allowed to make on the API. Still looking at past 30 ranked matches, games players are likely taking serious, can still give some important insights of player patterns and what roles they tend to play! There is also a neat Kaggle dataset (which inspired this project) that tracked Gold-level players across an entire ranked season, which now a bit outdated, can give some really rich insights into how player behavior changes across a season.
 
 ```{r wrangling, echo = FALSE}
 
