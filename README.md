@@ -2,7 +2,7 @@
 
 ![sample visualization](graphics/summary.png)
 
-[League of Legends](https://www.leagueoflegends.com/) offers a lot of choice in terms of playstyle, which is one reason why I think the game is so much fun. I have also always found it interesting how players seem to naturally "fall into" liking certain roles and champions. I was curious if I could <strong> extract some of these player patterns in a data-driven way </strong>. Do certain players prefer certain kinds of champions? Are there patterns in the types of champions that players main? For example, if you play Lux are you also likely to play Morgana? 
+[League of Legends](https://www.leagueoflegends.com/) offers a lot of choice in terms of playstyle, which is one reason why I think the game is so much fun. I have also always found it interesting how players seem to naturally "fall into" liking certain roles and champions. I was curious if I could <strong> extract and visualize some of these player patterns in a data-driven way </strong>. Do certain players prefer certain kinds of champions? Are there patterns in the types of champions that players main? For example, if you play Lux are you also likely to play Morgana? 
 
 
 ## What I did
@@ -18,7 +18,7 @@ I chose 8 champs to visualize some of these insights (left). Not all champions h
 ![sample visualization](graphics/side_by_side.png) 
 
 ## Visualizing champion mains as a network
-Another way to visualize this data is as a network. I visualized champions that had strong connections with other champions (were often mained together). Connections (white lines) indicate a strong relationship in how often champions are mained together. Because the network nodes (circles) are force-directed, the distance between champions indicate how often those champions are to be mained together. You can see communities that naturally emerge that seem to reflect champion playstyles (assassins cluster, support cluster, etc.). You can also see some neat connections between these communities such as the champions with pulls (Thresh/Blitz/Pyke) being frequently mained together. But with Pyke having more direct connections with the assassin cluster.
+Another way to visualize this data is as a network. Below I visualized champions that had strong connections with other champions (were often mained together). Connections indicate a strong relationship between champions (those champions were frequently mained together). Because the network nodes (circles) are force-directed, the distance between champions also reflects how often those champions are to be mained together. You can see groups that  emerge from this mastery data which seem to reflect champion playstyles (e.g. assassins cluster, support cluster, etc.). You can also see some neat connections between these clusters such as the champions with pulls (Thresh/Blitz/Pyke) being frequently mained together. But with Pyke having more direct connections with the assassin cluster.
 
 ![sample visualization](graphics/network.png)
 
@@ -29,13 +29,13 @@ I was also interested in how many champions people play overall (i.e. how small 
 
 
 ## Where to find stuff
-- Scripts used to request data from Riot API can be found in the [API_request](/API_request) folder (Code is heavily based on this [tutorial](https://rpubs.com/WallabyKingdom/riot-api))
+- Script used to request data from Riot API can be found [here](/riot_api_fetch). Code is heavily based on this helpful [tutorial](https://rpubs.com/WallabyKingdom/riot-api) and modified to curate the data I needed
 - Curated data from Riot API can be found in the folders: [mastery_data](/mastery_data) and [match_data](/match_data)
-- Analysis scripts can be found in mastery_analysis.Rmd and match_analysis.Rmd. RMarkdown-generated output (including additional visualizations) can be found in the respective .html files
+- Analysis scripts can be found in [mastery_analysis.Rmd](/mastery_analysis.Rmd) and [match_analysis.Rmd](/match_analysis.Rmd). RMarkdown-generated output (including additional visualizations) can be found in the respective .html files or viewed here: ([mastery](https://htmlpreview.github.io/?https://github.com/marlietandoc/lol/blob/main/mastery_analysis.html), [match](https://htmlpreview.github.io/?https://github.com/marlietandoc/lol/blob/main/match_analysis.html))
 
 
 ## Next steps
-- Due to API rate limiting I didn't get as much data as I would have liked. I'm hoping to retrieve more over time. For example, it would be neat to track player data across an entire ranked season.
+- Due to API rate limiting, I didn't get as much data as I would have liked. I'm hoping to retrieve more over time. For example, it would be neat to track player data across an entire ranked season.
 - I have been interpreting the findings in terms of playstyle. But there might also be patterns in what champions people like to play for other reasons too, like choosing champions based on the current meta, difficulty, aesthetics, skins, and lore. For example, Teemo is most related to Heimer, Garen, and Singed, though their exact playstyle to me is not super similar (I guess turrets are like mushrooms, and Singed and Teemo have poison), but I also find all these champions kind of hilarious (perhaps a little troll).
 - This project was a fun endeavor to visualize player preferences in champions. It could be the start of a champion recommender, or be combined with other data to be used to generate additional insights into player preference and behavior. With more data, I am especially interested in seeing if we can use techniques to place players into groups (clustering, factor analysis, etc) to see if this predicts what champions they play but also other aspects of gameplay.
 
