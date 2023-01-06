@@ -19,10 +19,11 @@ library(magick) #image manipulation
 ```
 
 ## The data
-Mastery data from 14343 different summoners from Iron to Diamond. The data is ordered already in descending order based on mastery points. For each summoner,  I took their top 3 champions (most mastery points) as their three mains. I then looked at how often certain champions co-occured (were correlated) in mains across players. That is, if a player mains Zed, do they also main Yasuo? How about Lux?
+Mastery data from 14343 different summoners from Iron to Diamond. For each summoner,  I took their top 3 champions (three champions with the most mastery points) as their three mains. I then looked at how often certain champions co-occured (were correlated) in mains across players.
 
-First lets just eyeball every single champions relationship to all other champions. This checkerboard is showing every pairwise relationship between all summoners. So a blue square means those two champions (line up the champ name on the vertical and horizontal axis) are often mainted together. A red squares means those two champions are rarely mains together. I also ordered it in a hiearchical clustering fashion which creates these clusters of champions based. For example in the bottom left you can see an assasssin cluster that formed where if you play one assassin you are likely to play another!
-```{r wrangling, echo = FALSE,fig.height = 30, fig.width = 30, message = FALSE, warning = FALSE}
+## The big picture
+I first wanted to eyeball every champions relationship to all other champions as a giant correlation matrix (heatmap) just to see if there is any meaningful relationships at all in what champions are often mained by the same players. This checkerboard visual is showing every pairwise relationship between all champions. A blue square means those two champions (line up the champ name on the vertical and horizontal axis) are often mained together. A red squares means those two champions are rarely mained together. I ordered the champions using hierarchical clustering which creates these "groups" of champions based on their similarity (how often they are mained together across players) to other champions which creates several large blue clusters. For example, in the very bottom left you can see an assassin cluster emerging where if you play one assassin you are likely to play another. I know it's hard to see so let's zoom in a bit. 
+```{r matrix, echo = FALSE,fig.height = 30, fig.width = 30, message = FALSE, warning = FALSE}
 
 #Read in mastery data pulled from Riot API
 setwd("~/Documents/GitHub/lol/lol_analysis/mastery_data")
@@ -59,14 +60,25 @@ clust <- hclust(dist(t(cor)))
 ggplot(data = filtered_melted_cormat, aes(x=as.character(Var1),  y= as.character(Var2), fill=value)) + 
   geom_tile()+
   scale_fill_gradient2(low = "red", high = "blue", mid = "white", 
-                       midpoint = 0, limit = c(-0.1,0.2), space = "Lab", 
+                       midpoint = 0, limit = c(-0.1,0.21), space = "Lab", 
                        name="Correlation") + 
   dark_theme_gray(base_size = 20,base_family = 'Helvetica') + 
   theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))+
   scale_y_discrete(limits = colnames(cor)[clust$order])+
   scale_x_discrete(limits = colnames(cor)[clust$order]) +
   labs(y = '', x = '') +
-  ggtitle('What mains are tightly correlated?')
+  #ggtitle('What mains are tightly correlated?')+ 
+  theme(plot.background = element_rect(fill = '#171717', colour = '#171717'))
+
+
+```
+
+Upon zooming in, we can see a support-like, mage cluster and an assassin-like cluster forming (blue clusters). This shows how players that play mage/support champs also play many similar champions, but less often play assassins (red colors indicate negative correlation) 
+
+```{r zoom_in_matrix, echo = FALSE,fig.height = 30, fig.width = 30, message = FALSE, warning = FALSE}
+
+knitr::include_graphics(paste0(getwd(), "/graphics/rsa_zoom_in.png"))
+
 
 
 ```
@@ -90,8 +102,8 @@ head(most_mastered)
 
 
 
-## Most related
-These are the champion pairs that are the most correlated with one another (i.e. if you main Zed you are likely to also main Yasuo). A higher positive value means those summoners are mained more often together
+## Most related champions
+These are the champion pairs that are the most correlated with one another (most commonly mained together). For example, if you main Yasuo you are likely to play Zed.
 ```{r most_related, echo = FALSE,fig.height = 30, fig.width = 30, message = FALSE, warning = FALSE}
 
 #List of champions that are most related
@@ -145,8 +157,8 @@ most_related
 
 
 
-## Least related
-These are the top champion pairs that are the least related. That is if you main Lux you are least likely to also main Lux. That is Yasuo mains seem to have very strong preferences of what other champs they tend to play
+## Least related champions
+These are the champion pairs that are the least correlated (most infrequently mained together). That is if you main Yasuo you are least likely to also main Lux. Yasuo mains seem to have very strong preferences of what other champs they tend to play and not play!
 ```{r least_related, echo=FALSE, fig.height=30, fig.width=30, message=FALSE, warning=FALSE}
 
 #Least related
@@ -193,23 +205,34 @@ knitr::include_graphics(paste0(getwd(), "/graphics/least_related.png"))
 ```
 
 
-## If you play X..
-I also wrote a function that based on the mastery data determines the top 3 champs you are most likely to play and least likely to play. Using the results from this,  With some manual placement in photoshop I made a graphic of some champions and their most likely and least likely mains
+## If you main X champion..
+I wrote a function where you input a champion's name and it spits out the top 3 champs players most often and least often mained with that champion. Using the results from this, I made a graphic (photoshop) of 8 example champions and their most likely and least likely mains.
+
 ```{r func_play, echo=FALSE, fig.height=30, fig.width=30, message=FALSE, warning=FALSE}
 
-
-calc_if_you_play <- function(champ_name) {
+#Function spits out a dataframe of the most correlated and least correlated champions.
+#champ_num = Champion name as a string (case sensitive)
+#other_num = The number of other champions you want (e.g.) 3 = top 3 most correlated and least correlated)
+calc_if_you_play <- function(champ_name, other_num) {
   
   sorted <- filter(filtered_melted_cormat, Var1 == champ_name) %>%
-    arrange(desc(value))
+    arrange(desc(value)) %>%
+    filter(value < 1) #Exclude champion with itself
+  
+  most_mained_together <- head(as.character(sorted$Var2), other_num) 
+  
+  least_mained_together <- rev(tail(as.character(sorted$Var2), other_num))
   
   
+  df <- data.frame(most_mained_together, least_mained_together)
+  print(champ_name)
+  df
   
 }
 
-#Least related
-least_related <- tail(how_related, 5) %>%
-  arrange(value)
+#Example
+calc_if_you_play('Teemo', 3)
+
 
 
 knitr::include_graphics(paste0(getwd(), "/graphics/mains.png"))
@@ -218,6 +241,58 @@ knitr::include_graphics(paste0(getwd(), "/graphics/mains.png"))
 
 
 ```
+
+
+
+
+
+## Network visualization
+Another way to visualize this data is as a network. I visualized only champions that had strong connections with other champions (were often mained together). Connections (white lines) indicate a strong relationship in how often champions are mained together across players. Because the network is force-directed, the distance between the nodes (cricles) indicate how often those champions are mained together. You can see communities that naturally emerge that seem to reflect champion playstyles (assassins cluster, support cluster, etc.). You can also see some neat connections between these communities such as the champions with pulls (Thresh/Blitz/Pyke) being frequently mained together. But with Pyke having more direct connections with the assassin cluster.
+
+```{r network, echo=FALSE, fig.height=10, fig.width=10, message=FALSE, warning=FALSE}
+
+#To simplify the network, for each player I choose their Top 2 most mastered champions
+simple_mains <- select(mains, main_1,main_2) %>%
+  filter(!(is.na(main_1)), !(is.na(main_2)))
+
+#Creates an edge list of all connections between every champion
+#The weight column is simply the number of times a pair of champions is observed as mained together
+edges <- simple_mains %>%
+  group_by(main_1,main_2) %>%
+  dplyr::summarise(weight = n()) %>%
+  ungroup() %>%
+  filter(weight > 11) #Only visualize stronger connections for visual clarity
+
+#Creates dataframes compatible with igraph for visualization
+edge_df= edges %>%
+  mutate(type = 'undirected')
+graph = graph_from_data_frame(d=edge_df,directed = FALSE)
+
+
+#Prepares champion icons to be used in the graph
+graph_champs <- V(graph)$name
+img_list <- list() 
+for (i in 1:length(graph_champs)) {
+  c <- graph_champs[i]
+  img <- readPNG(paste("./champs_cropped/crop_", c,'.png', sep =''))
+  img_list[i] <- list(img)
+}
+
+#Add images to network object
+V(graph)$raster <- img_list
+
+#VIsualize network with curved connections
+par(bg = '#171717')
+plot(graph, vertex.shape="raster", vertex.label=NA,
+     vertex.size=14,vertex.size2=14, edge.width=1,layout=layout_with_fr,
+     edge.curved=0.2, edge.color = 'white')
+
+
+
+
+```
+
+
 
 
 
