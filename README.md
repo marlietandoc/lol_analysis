@@ -6,7 +6,7 @@
 
 
 ## What I did
-1. Curated match and champion mastery data from [Riot Games API](https://developer.riotgames.com/) for thousands of summoners
+1. Curated match and champion mastery data from [Riot Games API](https://developer.riotgames.com/) for thousands of summoners (ranging from Iron to Diamond)
 2. Analyzed data in R using descriptive statistics, multivariate correlation metrics, clustering, and network analyses
 3. Visualized insights with R (ggplot2, igraph, magick) using champion icons and a bit of manual placement in illustrator/photoshop
 
