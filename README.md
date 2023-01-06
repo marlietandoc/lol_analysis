@@ -31,7 +31,7 @@ I was also interested in how many champions people play overall (i.e. how small 
 ## Where to find stuff
 - Scripts used to request data from Riot API can be found in the [API_request](/API_request) folder (Code is heavily based on this [tutorial](https://rpubs.com/WallabyKingdom/riot-api))
 - Curated data from Riot API can be found in the folders: [mastery_data](/mastery_data) and [match_data](/match_data)
-- Analysis scripts can be found in the .Rmd files and output (including additional visualizations) in the respective .html files
+- Analysis scripts can be found in mastery_analysis.Rmd and match_analysis.Rmd. RMarkdown-generated output (including additional visualizations) can be found in the respective .html files
 
 
 ## Next steps
