@@ -15,7 +15,7 @@ Below I summarize some of the main findings.
 ## Preferences in champion mains
 I selected the top 3 most mastered champions (mains) for each of the 14343 summoners in the dataset I curated. I then examined how often certain champions co-occured (were correlated) as mains across players. That is, for each champion I got a number for how often that champion was mained with all other champions across all players in the dataset.
 
-I chose 8 champs to visualize some of these insights (left). Not all champions had super strong correlations with other champions. So I also visualized (right) the champion pairs that had the strongest and weakest correlations as being mained together. For example, being a Yuumi main often co-occured with being a Lulu main. But if Yasuo main were unlikely to be a Lux main.
+I chose 8 champs to visualize some of these insights (left). This shows if you play Yasuo you are likely to also play Zed, Yone, Akali, but not Lux. Not all champions had super strong correlations with other champions. So I also visualized (right) the champion pairs that had the strongest and weakest correlations as being mained together. For example, being a Yuumi main often co-occured with being a Lulu main. But if Yasuo main were unlikely to be a Lux main.
 
 ![sample visualization](graphics/side_by_side.png) 
 
