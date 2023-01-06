@@ -29,7 +29,7 @@ I was also interested in how many champions people play overall (i.e. how small 
 
 
 ## Where to find stuff
-- Script used to request data from Riot API can be found [here](/riot_api_fetch). Code is heavily based on this helpful [tutorial](https://rpubs.com/WallabyKingdom/riot-api) and modified to curate the data I needed
+- My code chunks I used to request data from Riot API can be found[here](/riot_api_fetch). Code is heavily based on this helpful [tutorial](https://rpubs.com/WallabyKingdom/riot-api) and modified to curate the data I needed
 - Curated data from Riot API can be found in the folders: [mastery_data](/mastery_data) and [match_data](/match_data)
 - Analysis scripts can be found in [mastery_analysis.Rmd](/mastery_analysis.Rmd) and [match_analysis.Rmd](/match_analysis.Rmd). RMarkdown-generated output (including additional visualizations) can be found in the respective .html files or viewed here: ([mastery](https://htmlpreview.github.io/?https://github.com/marlietandoc/lol/blob/main/mastery_analysis.html), [match](https://htmlpreview.github.io/?https://github.com/marlietandoc/lol/blob/main/match_analysis.html))
 
