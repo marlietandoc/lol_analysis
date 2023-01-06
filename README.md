@@ -6,7 +6,7 @@
 
 
 ## What I did
-1. Pulled match and champion mastery data from Riot API (https://developer.riotgames.com/) for thousands of summoners
+1. Pulled match and champion mastery data from [Riot Games API](https://developer.riotgames.com/) for thousands of summoners
 2. Analyzed data in R using descriptive statistics, multivariate correlation metrics, clustering, and network analysis
 3. Visualized insights with R (ggplot2, igraph, magick) using champion icons and a bit of manual placement in illustrator/photoshop
 
@@ -33,5 +33,6 @@ I was also interested simply in how many champions people play (how small or big
 
 ## Next steps
 - Due to rate limiting I didn't get as much data as I would have liked from the API. I'm hoping to pull more over time. For example, it would be super cool to track player data across an entire ranked season.
+- For the most part, I have been interpreting these champions in terms of playstyle. But there might also be patterns in what champions people like to play for other reasons too, like enjoying certain aesthetics, skin preferences, lore, or just going based on the current meta. For example, Teemo is most related to Heimer, Garen, and Singed, though their playstyle is not super-duper similar I find all these champions kind of funny and charming.
 - This data also could be the start of a champion recommender, or be combined with other data to be used to generate additional insights into player preference and behavior. I am especially interested in seeing if we can use techniques to place players into groups (clustering, factor analysis, etc) to see if this predicts what champions they play but also other aspects of gameplay.
 - With the ever-changing meta, some champs are much more popular than others. It might be worth taking this into account into some of the analyses.
