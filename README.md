@@ -10,6 +10,8 @@
 2. Analyzed data in R using descriptive statistics, multivariate correlation metrics, clustering, and network analyses
 3. Visualized insights with R (ggplot2, igraph, magick) using champion icons and a bit of manual placement in illustrator/photoshop
 
+Below I summarize some of the main findings.
+
 ## Preferences in champion mains
 I selected the top 3 most mastered champions (mains) for each of the 14343 summoners in the dataset I curated. I then examined how often certain champions co-occured (were correlated) as mains across players. That is, for each champion I got a number for how often that champion was mained with all other champions across all players in the dataset.
 
