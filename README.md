@@ -2,12 +2,12 @@
 
 ![sample visualization](graphics/summary.png)
 
-[League of Legends](https://www.leagueoflegends.com/) offers a lot of choice in terms of playstyle, which is one reason why I think the game is so much fun. I have also always found it interesting how players seem to naturally "fall into" liking certain roles and champions. I was curious if I could <strong> extract and visualize some of these player patterns in a data-driven way. </strong> Do certain players prefer certain kinds of champions? Are there patterns in the types of champions that players main? For example, if you play Lux are you also likely to play Morgana? 
+[League of Legends](https://www.leagueoflegends.com/) offers a lot of choice in terms of playstyle, which is one reason why I think the game is so much fun. I have also always found it interesting how players seem to naturally fall into preferring certain roles and characters (champions). I was curious if I could <strong> extract and visualize some of these player patterns in a data-driven way. </strong> Do certain players prefer certain kinds of champions? Are there patterns in the types of champions that players main? For example, if you play Lux are you also likely to play Morgana? 
 
 
 ## What I did
-1. Curated match and champion mastery data from [Riot Games API](https://developer.riotgames.com/) for thousands of summoners (ranging from Iron to Diamond)
-2. Analyzed data in R using descriptive statistics, multivariate correlation metrics, clustering, and network analyses
+1. Curated match and champion mastery data from [Riot Games API](https://developer.riotgames.com/) for thousands of players (ranging from Iron to Diamond)
+2. Analyzed data in R using descriptive statistics, correlation metrics, clustering, and network analyses
 3. Visualized insights with R (ggplot2, igraph, magick) using champion icons and a bit of manual placement in illustrator/photoshop
 
 Below I summarize some of the main findings.
