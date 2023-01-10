@@ -2,12 +2,12 @@
 
 ![sample visualization](graphics/summary.png)
 
-[League of Legends](https://www.leagueoflegends.com/) offers a lot of choice in terms of playstyle, which is one reason why I think the game is so much fun. I have also always found it interesting how players seem to naturally fall into preferring certain roles and characters (champions). I was curious if I could <strong> extract and visualize some of these player patterns in a data-driven way. </strong> Do certain players prefer certain kinds of champions? Are there patterns in the types of champions that players main? For example, if you play Lux are you also likely to play Morgana? 
+[League of Legends](https://www.leagueoflegends.com/) offers a lot of choice in terms of playstyle and versatility, which is one reason why I think the game is so much fun. I have also always found it interesting how players seem to naturally fall into preferring certain roles and characters (champions). I was curious if I could <strong> extract and visualize some of these player patterns in a data-driven way. </strong> Do certain players prefer certain kinds of champions? Are there patterns in the types of champions that players main? For example, if you play Lux are you also likely to play Morgana? 
 
 
 ## What I did
-1. Curated match and champion mastery data from [Riot Games API](https://developer.riotgames.com/) for thousands of players (ranging from Iron to Diamond)
-2. Analyzed data in R using descriptive statistics, correlation metrics, clustering, and network analyses
+1. Curated champion mastery and recent match data from [Riot Games API](https://developer.riotgames.com/) for thousands of players (ranging from Iron to Diamond)
+2. Wrangled and analyzed data in R using descriptive statistics, correlation metrics, clustering, and network analyses
 3. Visualized insights with R (ggplot2, igraph, magick) using champion icons and a bit of manual placement in illustrator/photoshop
 
 Below I summarize some of the main findings.
@@ -37,7 +37,7 @@ I was also interested in how many champions people play overall (i.e. how small 
 
 
 ## Next steps
-- Due to API rate limiting, I didn't get as much data as I would have liked. I'm hoping to retrieve more over time. For example, it would be neat to track player data across an entire ranked season.
+- Due to API rate limiting, I didn't get as much data as I would have liked. I'm hoping to retrieve more over time. For example, it would be neat to track player data across an entire ranked season. Or with more data, to see how the results change in different ranks (e.g. Bronze vs. Diamond)
 - I have been interpreting the findings in terms of playstyle. But there might also be patterns in what champions people like to play for other reasons too, like choosing champions based on the current meta, difficulty, aesthetics, skins, and lore. For example, Teemo is most related to Heimer, Garen, and Singed, though their exact playstyle to me is not super similar (I guess turrets are like mushrooms, and Singed and Teemo have poison), but I also find all these champions kind of hilarious and fun.
 - This project was a fun endeavor to visualize player preferences in champions. It could be the start of a champion recommender, or be combined with other data to generate additional insights into player preferences, playstyle, and behavior. With more data, I would be interested in seeing if we can use techniques to place players into groups (kmeans clustering, factor analysis, etc.) and then see if we can actually predict meaningful outcomes and player decisions (e.g. such as what certain groups of players might think of a new champion or meta).
 
