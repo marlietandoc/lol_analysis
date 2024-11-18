@@ -1,4 +1,4 @@
-# League of Legends: Exploring patterns across players in champion preferences
+# Exploring patterns across video game players in character preferences
 
 ![sample visualization](graphics/summary.png)
 
