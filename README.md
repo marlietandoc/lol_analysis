@@ -6,11 +6,16 @@
 
 
 ## What I did
-1. Curated champion mastery and recent match data from [Riot Games API](https://developer.riotgames.com/) for thousands of players (ranging from Iron to Diamond)
+1. Pulled champion mastery and recent match data from [Riot Games API](https://developer.riotgames.com/) for thousands of players (ranging from Iron to Diamond)
 2. Wrangled and analyzed data in R using descriptive statistics, correlation metrics, clustering, and network analyses
 3. Visualized insights with R (ggplot2, igraph, magick) and some Illustrator.
 
-Below I summarize some of the main findings.
+## Where to find stuff
+- My code chunks I used to request data from Riot API can be found [here](/riot_api_fetch). Code is heavily based on this helpful [tutorial](https://rpubs.com/WallabyKingdom/riot-api) and modified to curate the particular data that I needed
+- Pulled data from the Riot API can be found in [mastery_data](/mastery_data) and [match_data](/match_data)
+- Analysis scripts can be found in [mastery_analysis.Rmd](/mastery_analysis.Rmd) and [match_analysis.Rmd](/match_analysis.Rmd). RMarkdown-generated output (including additional visualizations) can be found in the respective .html files or viewed here: ([mastery](https://htmlpreview.github.io/?https://github.com/marlietandoc/lol/blob/main/mastery_analysis.html), [match](https://htmlpreview.github.io/?https://github.com/marlietandoc/lol/blob/main/match_analysis.html))
+
+
 
 ## Preferences in champion mains
 I selected the top 3 most mastered champions (mains) for each of the 14343 summoners in the dataset I curated. I then examined how often certain champions co-occured (were correlated) as mains across players. That is, for each champion I got a number for how often that champion was mained with all other champions across all players in the dataset. I then could examine which champions most frequently co-occured with maining another champion.
@@ -18,14 +23,14 @@ I selected the top 3 most mastered champions (mains) for each of the 14343 summo
 I chose 8 champs to visualize some of these insights (left). This shows if you play Yasuo you are likely to also play Zed, Yone, Akali, but not Lux. Not all champions had super strong correlations with other champions. So I also visualized (right) the champion pairs that had the strongest and weakest correlations. For example, being a Yuumi main very often co-occured with being a Lulu main. But a Yasuo main were unlikely to be a Lux main.
 
 ![sample visualization](graphics/side_by_side.png) 
-<i> Made in Illustrator.</i>
+<i> Made in Illustrator</i>
 
 ## Visualizing champion mains as a network
 Another way to visualize this data is as a network, which can represent complex patterns by indicating relationship between items (in this case champions). Below I visualized champions that had strong connections with other champions (were often mained together). Connections indicate a strong relationship between those champions (those champions were frequently mained together). Because the network nodes (circles) are force-directed, the distance between champions also reflects how often those champions are to be mained together. You can see how groups of champions seem to emerge from this mastery data which is reflecting champion playstyles (e.g. assassins cluster, support cluster, ADC cluster). You can also see some interesting connections between these clusters. For example, champions with pulls (Thresh/Blitz/Pyke) are frequently mained together, but Pyke (due to being an assassin) has more direct connections with the assassin cluster. 
 
 ![sample visualization](graphics/network.png)
 
-<i> Made in R (igraph, magick).</i>
+<i> Made in R (igraph, magick)</i>
 
 ## How many different champions do summoners play?
 I was also interested in how many champions people play overall (i.e. how small or big their champion pool is). As a preliminary analysis, I examined how many unique champions were played in the 30 most recent ranked matches for 1063 summoners. You can see that there is a pretty wide range in how many champions people play, but most summoners play around 5-10 unique champions (at least in their 30 most recent ranked games). There were at least a few players who played the same champion every game (one-tricks).
@@ -33,13 +38,6 @@ I was also interested in how many champions people play overall (i.e. how small 
 ![sample visualization](graphics/histogram.png)
 
 <i> Made in R (ggplot2) </i>
-
-
-## Where to find stuff
-- My code chunks I used to request data from Riot API can be found [here](/riot_api_fetch). Code is heavily based on this helpful [tutorial](https://rpubs.com/WallabyKingdom/riot-api) and modified to curate the data I needed
-- Curated data from Riot API can be found in the folders: [mastery_data](/mastery_data) and [match_data](/match_data)
-- Analysis scripts can be found in [mastery_analysis.Rmd](/mastery_analysis.Rmd) and [match_analysis.Rmd](/match_analysis.Rmd). RMarkdown-generated output (including additional visualizations) can be found in the respective .html files or viewed here: ([mastery](https://htmlpreview.github.io/?https://github.com/marlietandoc/lol/blob/main/mastery_analysis.html), [match](https://htmlpreview.github.io/?https://github.com/marlietandoc/lol/blob/main/match_analysis.html))
-
 
 ## Next steps
 - Due to API rate limiting, I didn't get as much data as I would have liked. I'm hoping to retrieve more over time. For example, it would be neat to track player data across an entire ranked season. Or with more data, to see how the results change in different ranks (e.g. Bronze vs. Diamond)
