@@ -6,13 +6,13 @@
 
 
 ## What I did
-1. Pulled champion mastery and recent match data from [Riot Games API](https://developer.riotgames.com/) for thousands of players (ranging from Iron to Diamond)
+1. Pulled champion mastery and recent match data from the [Riot Games API](https://developer.riotgames.com/) for thousands of players (ranging from Iron to Diamond)
 2. Wrangled and analyzed data in R using descriptive statistics, correlation metrics, clustering, and network analyses
 3. Visualized insights with R (ggplot2, igraph, magick) and some Illustrator.
 
 ## Where to find stuff
-- My code chunks I used to request data from Riot API can be found [here](/riot_api_fetch). Code is heavily based on this helpful [tutorial](https://rpubs.com/WallabyKingdom/riot-api) and modified to curate the particular data that I needed
-- Pulled data from the Riot API can be found in [mastery_data](/mastery_data) and [match_data](/match_data)
+- My code chunks I used to request data from the Riot API can be found [here](/riot_api_fetch). Code is heavily based on this helpful [tutorial](https://rpubs.com/WallabyKingdom/riot-api) and modified to curate the particular data that I needed
+- Data that I pulled from the Riot API can be found in [mastery_data](/mastery_data) and [match_data](/match_data)
 - Analysis scripts can be found in [mastery_analysis.Rmd](/mastery_analysis.Rmd) and [match_analysis.Rmd](/match_analysis.Rmd). RMarkdown-generated output (including additional visualizations) can be found in the respective .html files or viewed here: ([mastery](https://htmlpreview.github.io/?https://github.com/marlietandoc/lol/blob/main/mastery_analysis.html), [match](https://htmlpreview.github.io/?https://github.com/marlietandoc/lol/blob/main/match_analysis.html))
 
 
