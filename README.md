@@ -8,7 +8,7 @@
 ## What I did
 1. Curated champion mastery and recent match data from [Riot Games API](https://developer.riotgames.com/) for thousands of players (ranging from Iron to Diamond)
 2. Wrangled and analyzed data in R using descriptive statistics, correlation metrics, clustering, and network analyses
-3. Visualized insights with R (ggplot2, igraph, magick) using champion icons and a bit of manual placement in illustrator/photoshop
+3. Visualized insights with R (ggplot2, igraph, magick) and some Illustrator.
 
 Below I summarize some of the main findings.
 
@@ -18,16 +18,21 @@ I selected the top 3 most mastered champions (mains) for each of the 14343 summo
 I chose 8 champs to visualize some of these insights (left). This shows if you play Yasuo you are likely to also play Zed, Yone, Akali, but not Lux. Not all champions had super strong correlations with other champions. So I also visualized (right) the champion pairs that had the strongest and weakest correlations. For example, being a Yuumi main very often co-occured with being a Lulu main. But a Yasuo main were unlikely to be a Lux main.
 
 ![sample visualization](graphics/side_by_side.png) 
+<i> Made in Illustrator.</i>
 
 ## Visualizing champion mains as a network
 Another way to visualize this data is as a network, which can represent complex patterns by indicating relationship between items (in this case champions). Below I visualized champions that had strong connections with other champions (were often mained together). Connections indicate a strong relationship between those champions (those champions were frequently mained together). Because the network nodes (circles) are force-directed, the distance between champions also reflects how often those champions are to be mained together. You can see how groups of champions seem to emerge from this mastery data which is reflecting champion playstyles (e.g. assassins cluster, support cluster, ADC cluster). You can also see some interesting connections between these clusters. For example, champions with pulls (Thresh/Blitz/Pyke) are frequently mained together, but Pyke (due to being an assassin) has more direct connections with the assassin cluster. 
 
 ![sample visualization](graphics/network.png)
 
+<i> Made in R (igraph, magick).</i>
+
 ## How many different champions do summoners play?
 I was also interested in how many champions people play overall (i.e. how small or big their champion pool is). As a preliminary analysis, I examined how many unique champions were played in the 30 most recent ranked matches for 1063 summoners. You can see that there is a pretty wide range in how many champions people play, but most summoners play around 5-10 unique champions (at least in their 30 most recent ranked games). There were at least a few players who played the same champion every game (one-tricks).
 
 ![sample visualization](graphics/histogram.png)
+
+<i> Made in R (ggplot2) </i>
 
 
 ## Where to find stuff
